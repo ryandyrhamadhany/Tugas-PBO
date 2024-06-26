@@ -117,7 +117,7 @@ public class Database {
             perintah.setString(3, judul_rm);
             perintah.setString(4, tgl_rm);
             perintah.setString(5, file_rm);
-            perintah.setString(5, ket_rm);
+            perintah.setString(6, ket_rm);
             perintah.executeUpdate();
             
             System.out.println("added");
@@ -143,6 +143,7 @@ public class Database {
             System.out.println(e.getMessage());
         }
     }
+    
     
     
     
@@ -188,7 +189,7 @@ public class Database {
     public void ubahRiwayat(int id_Riwayat, int id_Dokter, int id_RumahSakit, int id_Pasien,
     String keluhanPasien, String obatPasien, String fileRiwayat, String dateRiwayat){
         try{
-            String sql = "UPDATE riwayat SET id_rw=?,id_dok=?,id_rs=?,id_pas=?,keluhan_riw=?,obat_riw=?,file_riw=?,date_riw=? WHWRE id_rw=?";
+            String sql = "UPDATE riwayat SET id_dok=?,id_rs=?,id_pas=?,keluhan_riw=?,obat_riw=?,file_riw=?,date_riw=? WHERE id_rw=?";
             PreparedStatement perintah = connectionDB.prepareStatement(sql);
             perintah.setInt(1, id_Dokter);
             perintah.setInt(2, id_RumahSakit);
@@ -294,7 +295,7 @@ public class Database {
     
     public void hapusRiwayat(int id_Riwayat){
         try{
-            String sql = "DELETE FROM pasien WHERE id_rw=?";
+            String sql = "DELETE FROM riwayat WHERE id_rw=?";
             PreparedStatement perintah = connectionDB.prepareStatement(sql);
             perintah.setInt(1, id_Riwayat);
             perintah.executeUpdate();
